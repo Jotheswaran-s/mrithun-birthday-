@@ -914,11 +914,112 @@ html {
 /* ===== FOOTER ===== */
 .footer {
     text-align: center;
-    padding: 40px 20px;
-    font-size: 1.2rem;
+    padding: 60px 20px 40px;
+    font-size: 1.1rem;
     color: var(--dark-gold);
     position: relative;
     z-index: 2;
+    background: linear-gradient(to top, #000, transparent);
+}
+
+.footer-content {
+    opacity: 0;
+    animation: fadeInUp 1s ease 8s forwards;
+    /* Delayed appearance */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.crafted-by {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.names {
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.names:hover {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.footer-divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 15px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--gold);
+    animation: pulseWidth 2s ease-in-out infinite;
+}
+
+@keyframes pulseWidth {
+
+    0%,
+    100% {
+        width: 50px;
+        opacity: 0.5;
+    }
+
+    50% {
+        width: 100px;
+        opacity: 1;
+    }
+}
+
+.journey-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.car-icon {
+    display: inline-block;
+    animation: driveCar 2s ease-in-out infinite;
+    font-size: 1.4rem;
+}
+
+@keyframes driveCar {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .crafted-by {
+        font-size: 1rem;
+    }
+
+    .journey-text {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
 }
 
 /* ===== PASSWORD MODAL ===== */
@@ -1090,32 +1191,50 @@ html {
     }
 }
 
-/* ===== CHILDHOOD MEMORIES ===== */
-.memory-lane {
-    margin-top: 30px;
-    position: relative;
+/* ===== CHILDHOOD MEMORIES GRID ===== */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 40px;
     padding: 10px;
-    background: rgba(255, 215, 0, 0.1);
-    border-radius: 15px;
-    border: 1px solid var(--gold);
-    display: inline-block;
-    transform: rotate(-2deg);
-    transition: all 0.3s ease;
-}
-
-.memory-lane:hover {
-    transform: rotate(0deg) scale(1.02);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
 .memory-photo {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    max-height: 400px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid var(--gold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    filter: sepia(20%);
+    /* Nostalgic feel */
+}
+
+/* Scrapbook Effect */
+.photo-1 {
+    transform: rotate(-3deg);
+}
+
+.photo-2 {
+    transform: rotate(2deg) translateY(10px);
+}
+
+.photo-3 {
+    transform: rotate(3deg) translateY(-10px);
+}
+
+.photo-4 {
+    transform: rotate(-2deg);
+}
+
+.memory-photo:hover {
+    transform: scale(1.1) rotate(0deg);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    filter: sepia(0%);
+    cursor: pointer;
 }
 
 /* Ensure image fits well on mobile */

@@ -35,7 +35,6 @@
     <div id="main-content" class="main-content">
         <!-- Floating Particles Background -->
         <div class="particles"></div>
-        <div class="speed-lines"></div>
 
         <!-- Level 18 Unlocked Section -->
         <section class="level-section">
@@ -55,7 +54,7 @@
         <section class="hero-section">
             <div class="hero-container">
                 <div class="spotlight-hero"></div>
-                <h1 class="hero-text">Officially 18</h1>
+                <h1 class="hero-text">Officially 18.</h1>
             </div>
         </section>
 
@@ -86,7 +85,7 @@
         <!-- Celebration Button Section -->
         <section class="celebration-section">
             <button id="firecracker-btn" class="firecracker-btn">
-                Start Your Engine 🏎️💨
+                Start the 18th Celebration 🎉
             </button>
             <div id="fireworks-container" class="fireworks-container"></div>
             <div id="number-18-container" class="number-18-container hidden">
@@ -108,12 +107,6 @@
                             The world isn't ready for Mrithun at 18 👑🔥<br>
                             <span class="highlight">Happy 18th Birthday ❤️</span>
                         </p>
-                        <div class="memory-grid">
-                            <img src="memory1.jpg" alt="Childhood Memory" class="memory-photo photo-1">
-                            <img src="memory2.jpg" alt="Growing Up" class="memory-photo photo-2">
-                            <img src="memory3.jpg" alt="Style Icon" class="memory-photo photo-3">
-                            <img src="memory4.jpg" alt="Legend" class="memory-photo photo-4">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -122,13 +115,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-content">
-                <p class="crafted-by">Crafted with Love by <span class="names">Jotheswaran & Gowthami</span> ❤️</p>
-                <div class="footer-divider"></div>
-                <p class="journey-text">
-                    Engine started <span class="car-icon">🏎️</span> Level 18 unlocked. Let the journey begin 🚀
-                </p>
-            </div>
+            <p>Made with ❤️ — by Jotheswaran And Gowthami</p>
         </footer>
     </div>
 
