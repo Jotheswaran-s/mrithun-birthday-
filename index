@@ -31,11 +31,6 @@
         <div class="confetti-container"></div>
     </div>
 
-    <!-- Music Toggle Button -->
-    <button id="music-toggle" class="music-toggle">
-        <span class="music-icon">🔊</span>
-    </button>
-
     <!-- Main Content -->
     <div id="main-content" class="main-content">
         <!-- Floating Particles Background -->
@@ -78,12 +73,11 @@
                 <div class="quote-card" data-delay="0">
                     <p class="quote-text">"The Future Starts Now 🔥"</p>
                 </div>
-                
                 <div class="quote-card" data-delay="400">
                     <p class="quote-text">"From Boy to Men"</p>
                 </div>
                 <div class="quote-card" data-delay="600">
-                    <p class="quote-text">“From school days to college ways — shine bright at 18 ✨”</p>
+                    <p class="quote-text">"From school days to college ways — shine bright at 18 ✨"</p>
                 </div>
             </div>
         </section>
@@ -118,18 +112,10 @@
             </div>
         </section>
 
-        <!-- WhatsApp Share Button -->
-        <a href="https://wa.me/?text=MRITHUN%20turns%2018%20today%20%F0%9F%91%91%F0%9F%94%A5%0ALevel%2018%20Unlocked!%0AFebruary%2021%20%F0%9F%8E%89"
-            target="_blank" class="whatsapp-share" id="whatsapp-share">
-            <svg viewBox="0 0 32 32" fill="currentColor">
-                <path
-                    d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.407 1.407-5.247-0.292-0.507c-1.224-2.162-1.87-4.588-1.87-7.070 0-7.444 6.056-13.5 13.5-13.5s13.5 6.056 13.5 13.5-6.056 13.5-13.5 13.5zM21.803 18.997c-0.224-0.112-1.327-0.655-1.533-0.73s-0.355-0.112-0.505 0.112-0.58 0.73-0.711 0.88-0.262 0.168-0.486 0.056-0.947-0.349-1.803-1.113c-0.667-0.595-1.117-1.329-1.248-1.553s-0.014-0.346 0.099-0.458c0.101-0.1 0.224-0.262 0.336-0.393s0.149-0.224 0.224-0.374 0.037-0.28-0.019-0.393-0.505-1.216-0.692-1.666c-0.181-0.437-0.365-0.378-0.505-0.385-0.131-0.007-0.28-0.007-0.43-0.007s-0.393 0.056-0.598 0.28-0.786 0.767-0.786 1.871 0.805 2.171 0.917 2.321 1.58 2.413 3.832 3.384c0.536 0.231 0.954 0.369 1.279 0.473 0.537 0.171 1.026 0.147 1.413 0.089 0.431-0.064 1.327-0.542 1.514-1.066s0.187-0.973 0.131-1.066-0.205-0.149-0.429-0.261z" />
-            </svg>
-        </a>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>“Built with love, pride, and endless memories — by Jotheswaran and Gowthami ❤️”</p>
+            <p>Made with ❤️ for the Legend at 18 — by Jotheswaran And Gowthami</p>
         </footer>
     </div>
 
