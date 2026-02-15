@@ -36,9 +36,8 @@ A fully cinematic, theatre-style 18th birthday surprise website celebrating Mrit
 ### Mass Quote Section
 - 4 stylish punch dialogues with cinematic reveal:
   - "The Future Starts Now 🔥"
-  - "18 Years of Greatness"
-  - "From Boy to Legend"
-  - "One Life. One Rule. Mrithun Rule."
+  - "From Boy to Men"
+  - “From school days to college ways — shine bright at 18 ✨”.
 - Hover effects with glow
 - Responsive card layout
 

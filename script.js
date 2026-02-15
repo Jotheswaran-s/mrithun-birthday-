@@ -483,4 +483,4 @@ setTimeout(() => {
 console.log('%c🔥 MRITHUN - 18 🔥', 'font-size: 30px; font-weight: bold; color: #FFD700; text-shadow: 0 0 10px #FFD700;');
 console.log('%cHappy 18th Birthday Legend! 👑', 'font-size: 20px; color: #FF4500;');
 console.log('%cLevel 18 Unlocked! 🔓', 'font-size: 16px; color: #FFD700;');
-console.log('%cMade with ❤️ for the Legend at 18', 'font-size: 14px; color: #FFD700;');
+console.log('%c“Built with love, pride, and endless memories — by Jotheswaran And Gowthami❤️”', 'font-size: 14px; color: #FFD700;');
