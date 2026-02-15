@@ -54,7 +54,7 @@
         <section class="hero-section">
             <div class="hero-container">
                 <div class="spotlight-hero"></div>
-                <h1 class="hero-text">Officially 18.<br>Officially Legendary.</h1>
+                <h1 class="hero-text">Officially 18.</h1>
             </div>
         </section>
 
@@ -115,7 +115,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Made with ❤️ for the Legend at 18 — by Jotheswaran And Gowthami</p>
+            <p>Made with ❤️ — by Jotheswaran And Gowthami</p>
         </footer>
     </div>
 
