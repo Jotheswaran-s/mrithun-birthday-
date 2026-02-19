@@ -4,156 +4,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MRITHUN - 18th Birthday Celebration 👑</title>
-    <meta name="description" content="A cinematic 18th birthday celebration for Mrithun - February 21">
-    <link rel="stylesheet" href="styles.css">
+    <title>Happy 18th Birthday Mrithun! 🏎️</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&family=Poppins:wght@400;600;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- React Dependencies (CDN) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
-    <!-- Theatre Intro Overlay -->
-    <div id="theatre-intro" class="theatre-intro active">
-        <div class="golden-particles-intro"></div>
-        <div class="intro-text">
-            <p class="intro-line-1">February 21</p>
-            <p class="intro-line-2">A Milestone Year</p>
-            <p class="intro-line-3">From Boy to Man</p>
-        </div>
-        <div class="mass-entry">
-            <h1 class="thalapathy-name">MRITHUN – 18 👑</h1>
-            <div class="crown-icon">👑</div>
-        </div>
-        <div class="fire-sparks"></div>
-        <div class="confetti-container"></div>
-    </div>
+    <div id="root"></div>
 
-    <!-- Main Content -->
-    <div id="main-content" class="main-content">
-        <!-- Floating Particles Background -->
-        <div class="particles"></div>
-        <div class="speed-lines"></div>
+    <script type="text/babel">
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-        <!-- Level 18 Unlocked Section -->
-        <section class="level-section">
-            <div class="level-container">
-                <h2 class="level-title">LEVEL 18 UNLOCKED 🔓</h2>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                    <div class="progress-text">
-                        <span id="progress-number">0</span> / 18
+        const { useState, useEffect, useRef } = React;
+
+        // ---------------------------------------------------------
+        // 📸 PHOTO SETUP INSTRUCTIONS:
+        // 1. Place Mrithun's photos in the "images" folder created in this directory.
+        // 2. Rename them to photo1.jpg, photo2.jpg, photo3.jpg, photo4.jpg, photo5.jpg
+        // 3. Update the list below to use your local files instead of the internet links.
+        // ---------------------------------------------------------
+        const mrithunPhotos = [
+            "./images/photo1.jpg",
+            "./images/photo2.jpg",
+            "./images/photo3.jpg",
+            "./images/photo4.jpg",
+            "./images/photo5.jpg",
+            "./images/photo6.jpg",
+            "./images/photo7.jpg",
+            "./images/photo8.jpg",
+            "./images/photo9.jpg"
+        ];
+
+        const App = () => {
+            const headerRef = useRef(null);
+
+            // Function to trigger confetti
+            const launchConfetti = () => {
+                const duration = 3 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                const interval = setInterval(function () {
+                    const timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
+                }, 250);
+            };
+
+            useEffect(() => {
+                // Intro Animation
+                const tl = gsap.timeline();
+
+                tl.fromTo(".overlay-text",
+                    { opacity: 0, scale: 0.5 },
+                    { opacity: 1, scale: 1, duration: 1.5, ease: "elastic.out(1, 0.5)" }
+                )
+                    .to(".overlay-text", { opacity: 0, duration: 0.5, delay: 1 })
+                    .to(".intro-overlay", { y: "-100%", duration: 1, ease: "power4.inOut", onComplete: launchConfetti })
+                    .fromTo(".hero-content > *",
+                        { y: 50, opacity: 0 },
+                        { y: 0, opacity: 1, staggered: 0.2, duration: 1 }
+                    );
+
+                // Scroll Animations
+                gsap.utils.toArray('.fade-in-section').forEach(element => {
+                    gsap.fromTo(element,
+                        { opacity: 0, y: 50 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            scrollTrigger: {
+                                trigger: element,
+                                start: "top 80%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    );
+                });
+
+            }, []);
+
+            return (
+                <div className="app-container">
+                    {/* Intro Overlay */}
+                    <div className="intro-overlay">
+                        <h1 className="overlay-text">Engine Started 🏎️</h1>
                     </div>
-                </div>
-                <p class="level-subtitle">New Chapter Begins</p>
-            </div>
-        </section>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-container">
-                <div class="spotlight-hero"></div>
-                <h1 class="hero-text">Officially 18</h1>
-            </div>
-        </section>
+                    {/* Navigation/Header */}
+                    <nav className="navbar">
+                        <div className="logo">MRITHUN 18 👑</div>
+                        <div className="date">FEB 21</div>
+                    </nav>
 
-        <!-- Custom Logo Section -->
-        <section class="logo-section">
-            <div class="custom-logo">
-                <div class="crown-top">👑</div>
-                <h1 class="logo-text">MRITHUN<br><span class="age-18">18</span></h1>
-                <div class="light-rays"></div>
-            </div>
-        </section>
-
-        <!-- Mass Quote Section -->
-        <section class="quotes-section">
-            <div class="quote-container">
-                <div class="quote-card" data-delay="0">
-                    <p class="quote-text">"The Future Starts Now 🔥"</p>
-                </div>
-                <div class="quote-card" data-delay="400">
-                    <p class="quote-text">"From Boy to Men"</p>
-                </div>
-                <div class="quote-card" data-delay="600">
-                    <p class="quote-text">"From school days to college ways — shine bright at 18 ✨"</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Celebration Button Section -->
-        <section class="celebration-section">
-            <button id="firecracker-btn" class="firecracker-btn">
-                Start Your Engine 🏎️💨
-            </button>
-            <div id="fireworks-container" class="fireworks-container"></div>
-            <div id="number-18-container" class="number-18-container hidden">
-                <div class="glowing-18">18</div>
-            </div>
-        </section>
-
-        <!-- Secret Message Section -->
-        <section class="secret-section">
-            <div class="secret-container">
-                <button id="unlock-btn" class="unlock-btn">
-                    Unlock Secret Message 🔐
-                </button>
-                <div id="secret-message" class="secret-message hidden">
-                    <div class="message-content">
-                        <p class="message-text">
-                            You have grown into someone strong, kind and unstoppable.<br>
-                            This is just the beginning.<br>
-                            The world isn't ready for Mrithun at 18 👑🔥<br>
-                            <span class="highlight">Happy 18th Birthday ❤️</span>
-                        </p>
-                        <div class="memory-grid">
-                            <img src="memory1.jpg" alt="Childhood Memory" class="memory-photo photo-1">
-                            <img src="memory2.jpg" alt="Growing Up" class="memory-photo photo-2">
-                            <img src="memory3.jpg" alt="Style Icon" class="memory-photo photo-3">
-                            <img src="memory4.jpg" alt="Legend" class="memory-photo photo-4">
+                    {/* Hero Section */}
+                    <header className="hero" ref={headerRef}>
+                        <div className="hero-content">
+                            <h2 className="subtitle">The Future Starts Now 🔥</h2>
+                            <h1 className="title">HAPPY 18TH BIRTHDAY</h1>
+                            <h1 className="name">MRITHUN</h1>
+                            <p className="tagline">From Boy to Men. Officially 18. 👑</p>
+                            <br />
+                            <p className="tagline">"You have grown into someone strong, kind and unstoppable."</p>
                         </div>
-                    </div>
+                        <div className="scroll-indicator">
+                            <span>⬇</span>
+                        </div>
+                    </header>
+
+                    {/* Gallery Section */}
+                    <section className="section gallery fade-in-section">
+                        <h2 className="section-title">Ride of a Lifetime</h2>
+                        <div className="photo-grid">
+                            {mrithunPhotos.map((src, idx) => (
+                                <div className="photo-card" key={idx}>
+                                    <div className="photo-inner">
+                                        <img
+                                            src={src}
+                                            alt={`Moment ${idx + 1}`}
+                                            onError={(e) => {
+                                                console.error("Failed to load image:", src);
+                                                e.target.style.border = "2px solid red";
+                                                e.target.src = "https://via.placeholder.com/300x400?text=Image+Not+Found";
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Messages Section */}
+                    <section className="section messages fade-in-section">
+                        <div className="message-container">
+                            <h2 className="section-title">Words for the Journey</h2>
+                            <div className="message-box">
+                                <p>"This is just the beginning."</p>
+                                <p className="highlight">"The world isn't ready for Mrithun at 18 👑🔥"</p>
+                                <p>"From school days to college ways — shine"</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="footer fade-in-section">
+                        <div className="footer-content">
+                            <h3>Happy 18th Birthday ❤️</h3>
+                            <p>Crafted with Love by Jotheswaran & Gowthami ❤️</p>
+                            <span className="car-icon-large">🏎️💨</span>
+                        </div>
+                    </footer>
                 </div>
-            </div>
-        </section>
+            );
+        };
 
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p class="crafted-by">Crafted with Love by <span class="names">Jotheswaran & Gowthami</span> ❤️</p>
-                <div class="footer-divider"></div>
-                <p class="journey-text">
-                    Engine started <span class="car-icon">🏎️</span> Level 18 unlocked. Let the journey begin 🚀
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Password Modal -->
-    <div id="password-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2>Enter Password</h2>
-            <input type="password" id="password-input" placeholder="Enter password...">
-            <div class="modal-buttons">
-                <button id="submit-password" class="modal-btn submit-btn">Unlock</button>
-                <button id="cancel-password" class="modal-btn cancel-btn">Cancel</button>
-            </div>
-            <p id="password-error" class="password-error hidden">Incorrect password! Try again.</p>
-        </div>
-    </div>
-
-    <!-- Audio Elements -->
-    <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="emotional-music" loop>
-        <source src="emotional.mp3" type="audio/mpeg">
-    </audio>
-
-    <script src="script.js"></script>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 
 </html>
