@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday Mrithun! 🐺🏎️</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        /* INLINED CSS TO PREVENT CACHING ISSUES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0014;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de;
+            }
+
+            100% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 60px #0ff;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(100px, 150px) rotate(120deg);
+            }
+
+            66% {
+                transform: translate(-100px, 100px) rotate(240deg);
+            }
+        }
+
+        @keyframes roamWolf {
+            0% {
+                left: -500px;
+                transform: scaleX(1);
+            }
+
+            45% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                left: 100%;
+                transform: scaleX(-1);
+            }
+
+            95% {
+                transform: scaleX(-1);
+            }
+
+            100% {
+                left: -500px;
+                transform: scaleX(1);
+            }
+        }
+
+        .floating-emojis {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .floating-emoji {
+            position: absolute !important;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1b0029 0%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(30, 0, 50, 0.7), rgba(0, 0, 0, 0.9)),
+                url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: grayscale(80%);
+        }
+
+        .wolf-container {
+            position: absolute;
+            bottom: 0px;
+            left: -500px;
+            filter: drop-shadow(0 0 50px #0ff);
+            z-index: 5;
+            animation: roamWolf 30s linear infinite;
+        }
+
+        .hero-content {
+            z-index: 10;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ff00de;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .name {
+            font-size: 6rem;
+            color: #fff;
+            text-shadow: 0 0 20px #0ff;
+            margin-bottom: 30px;
+            font-weight: 900;
+        }
+
+        .boost-btn {
+            background: transparent;
+            border: 3px solid #ff00de;
+            color: #ff00de;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff00de;
+            box-shadow: 0 0 20px rgba(255, 0, 222, 0.4);
+        }
+
+        .boost-btn:hover {
+            background: #ff00de;
+            color: #fff;
+            box-shadow: 0 0 40px #ff00de;
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            border-bottom: 2px solid #ff00de;
+            margin-bottom: 50px;
+            display: inline-block;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-row::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #0ff;
+        }
+
+        .timeline-item {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #0ff;
+        }
+
+        .timeline-item.right {
+            margin-left: auto;
+        }
+
+        .year-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            border: 2px solid #ff00de;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hyper-mode .name {
+            animation: neonPulse 0.5s infinite alternate;
+        }
+
+        .hyper-mode .hero {
+            background: linear-gradient(45deg, #2b0054, #005454);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #ff00de;
+            font-weight: 900;
+        }
+
+        footer {
+            padding: 50px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .car-icon-large {
+            font-size: 4rem;
+            display: inline-block;
+            animation: driveFooter 5s linear infinite;
+        }
+
+        @keyframes driveFooter {
+            0% {
+                transform: translateX(-200px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(200px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [isHyperMode, setIsHyperMode] = useState(false);
+
+            const launchConfetti = () => {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            };
+
+            const toggleHyperMode = () => {
+                setIsHyperMode(!isHyperMode);
+                if (!isHyperMode) launchConfetti();
+            };
+
+            return (
+                <div className={isHyperMode ? 'hyper-mode' : ''}>
+                    {/* FIXED EMOJIS */}
+                    <div className="floating-emojis">
+                        <div className="floating-emoji" style={{ top: '10%', left: '10%', animationDelay: '0s' }}>🐺</div>
+                        <div className="floating-emoji" style={{ top: '40%', left: '80%', animationDelay: '2s' }}>🐺</div>
+                        <div className="floating-emoji" style={{ top: '70%', left: '20%', animationDelay: '4s' }}>🐺</div>
+                        <div className="floating-emoji" style={{ top: '80%', left: '60%', animationDelay: '1s' }}>🐺</div>
+                        <div className="floating-emoji" style={{ top: '20%', left: '50%', animationDelay: '3s' }}>🐺</div>
+                    </div>
+
+                    <nav className="navbar">
+                        <div className="logo">🐺 MRITHUN 18 👑</div>
+                        <div className="date">FEB 21, 2026</div>
+                    </nav>
+
+                    <header className="hero">
+                        <div className="wolf-container">
+                            <lottie-player
+                                src="https://lottie.host/8e207905-1a86-4fdf-9762-b13c7746244f/N1l9zO1E9U.json"
+                                background="transparent"
+                                speed="1"
+                                style={{ width: '400px', height: '400px' }}
+                                loop
+                                autoplay
+                            ></lottie-player>
+                        </div>
+                        <div className="hero-content">
+                            <h2 className="subtitle">The Legend of the Wolf 🐺</h2>
+                            <h1 className="title">HAPPY 18TH BIRTHDAY</h1>
+                            <h1 className="name">MRITHUN</h1>
+                            <button className="boost-btn" onClick={toggleHyperMode}>
+                                {isHyperMode ? "ENGINE NORMAL" : "ACTIVATE TURBO BOOST 🚀"}
+                            </button>
+                        </div>
+                    </header>
+
+                    <section className="section">
+                        <h2 className="section-title">Roadmap to Excellence</h2>
+                        <div className="timeline">
+                            <div className="timeline-row">
+                                <div className="timeline-item"><h3>Level 1</h3><p>The journey began.</p></div>
+                                <div className="year-marker">0-5</div>
+                            </div>
+                            <div className="timeline-row">
+                                <div className="year-marker">18</div>
+                                <div className="timeline-item right"><h3>Unlocked</h3><p>Legendary Status reached.</p></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer>
+                        <h3>Happy 18th Birthday 🐺❤️</h3>
+                        <p>Crafted with Love for Mrithun ❤️</p>
+                        <span className="car-icon-large">🏎️💨</span>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
