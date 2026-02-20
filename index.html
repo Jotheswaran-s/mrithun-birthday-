@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 18th Birthday Mrithun! 🏎️</title>
+    <title>Happy 18th Birthday Mrithun! 🐺🏎️</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,146 +27,154 @@
 
     <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
         const { useState, useEffect, useRef } = React;
 
-        // ---------------------------------------------------------
-        // 📸 PHOTO SETUP INSTRUCTIONS:
-        // 1. Place Mrithun's photos in the "images" folder created in this directory.
-        // 2. Rename them to photo1.jpg, photo2.jpg, photo3.jpg, photo4.jpg, photo5.jpg
-        // 3. Update the list below to use your local files instead of the internet links.
-        // ---------------------------------------------------------
-
-
         const App = () => {
             const headerRef = useRef(null);
+            const [isHyperMode, setIsHyperMode] = useState(false);
 
-            // Function to trigger confetti
             const launchConfetti = () => {
                 const duration = 3 * 1000;
                 const animationEnd = Date.now() + duration;
                 const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
                 const interval = setInterval(function () {
                     const timeLeft = animationEnd - Date.now();
-
-                    if (timeLeft <= 0) {
-                        return clearInterval(interval);
-                    }
-
+                    if (timeLeft <= 0) return clearInterval(interval);
                     const particleCount = 50 * (timeLeft / duration);
                     confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
                 }, 250);
             };
 
-            useEffect(() => {
-                // Intro Animation
-                const tl = gsap.timeline();
+            const toggleHyperMode = () => {
+                setIsHyperMode(!isHyperMode);
+                if (!isHyperMode) {
+                    launchConfetti();
+                }
+            };
 
-                tl.fromTo(".overlay-text",
-                    { opacity: 0, scale: 0.5 },
-                    { opacity: 1, scale: 1, duration: 1.5, ease: "elastic.out(1, 0.5)" }
-                )
+            useEffect(() => {
+                const tl = gsap.timeline();
+                tl.fromTo(".overlay-text", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.5, ease: "elastic.out(1, 0.5)" })
                     .to(".overlay-text", { opacity: 0, duration: 0.5, delay: 1 })
                     .to(".intro-overlay", { y: "-100%", duration: 1, ease: "power4.inOut", onComplete: launchConfetti })
-                    .fromTo(".hero-content > *",
-                        { y: 50, opacity: 0 },
-                        { y: 0, opacity: 1, staggered: 0.2, duration: 1 }
-                    );
+                    .fromTo(".hero-content > *", { y: 50, opacity: 0 }, { y: 0, opacity: 1, staggered: 0.2, duration: 1 });
 
-                // Scroll Animations
                 gsap.utils.toArray('.fade-in-section').forEach(element => {
-                    gsap.fromTo(element,
-                        { opacity: 0, y: 50 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 1,
-                            scrollTrigger: {
-                                trigger: element,
-                                start: "top 80%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    );
+                    gsap.fromTo(element, { opacity: 0, y: 50 }, {
+                        opacity: 1, y: 0, duration: 1,
+                        scrollTrigger: { trigger: element, start: "top 80%", toggleActions: "play none none reverse" }
+                    });
                 });
-
             }, []);
 
             return (
-                <div className="app-container">
-                    {/* Intro Overlay */}
+                <div className={`app-container ${isHyperMode ? 'hyper-mode' : ''}`}>
                     <div className="intro-overlay">
-                        <h1 className="overlay-text">Engine Started 🏎️</h1>
+                        <h1 className="overlay-text">Level 18 Unlocked 🔓</h1>
                     </div>
 
-                    {/* Navigation/Header */}
+                    <div className="floating-emojis">
+                        {[
+                            { top: '10%', left: '5%', dur: '15s' },
+                            { top: '30%', left: '85%', dur: '20s' },
+                            { top: '70%', left: '15%', dur: '18s' },
+                            { top: '85%', left: '75%', dur: '25s' },
+                            { top: '50%', left: '50%', dur: '22s' }
+                        ].map((pos, i) => (
+                            <div key={i} className="floating-emoji"
+                                style={{ top: pos.top, left: pos.left, animation: `floatAround ${pos.dur} linear infinite` }}>
+                                🐺
+                            </div>
+                        ))}
+                    </div>
+
                     <nav className="navbar">
-                        <div className="logo">MRITHUN 18 👑</div>
-                        <div className="date">FEB 21</div>
+                        <div className="logo">🐺 MRITHUN 18 👑</div>
+                        <div className="date">FEB 21, 2026</div>
                     </nav>
 
-                    {/* Hero Section */}
                     <header className="hero" ref={headerRef}>
+                        <div className="wolf-container">
+                            <lottie-player
+                                src="https://assets8.lottiefiles.com/packages/lf20_S68Sst.json"
+                                background="transparent"
+                                speed="1"
+                                style={{ width: '500px', height: '500px' }}
+                                loop
+                                autoplay
+                            ></lottie-player>
+                        </div>
                         <div className="hero-content">
-                            <h2 className="subtitle">The Future Starts Now 🔥</h2>
+                            <h2 className="subtitle">The Legend of the Wolf 🐺</h2>
                             <h1 className="title">HAPPY 18TH BIRTHDAY</h1>
                             <h1 className="name">MRITHUN</h1>
-                            <p className="tagline">From Boy to Men. Officially 18. 👑</p>
-                            <br />
-                            <p className="tagline">"You have grown into someone strong, kind and unstoppable."</p>
+                            <p className="tagline">"True legends are not born, they are built." 🏎️</p>
+                            <button className="boost-btn" onClick={toggleHyperMode}>
+                                {isHyperMode ? "ENGINE NORMAL" : "ACTIVATE TURBO BOOST 🚀"}
+                            </button>
                         </div>
-                        <div className="scroll-indicator">
-                            <span>⬇</span>
-                        </div>
+                        <div className="scroll-indicator"><span>⬇</span></div>
                     </header>
 
-                    {/* Gallery Section */}
-                    <section className="section gallery fade-in-section">
-                        <h2 className="section-title">Ride of a Lifetime</h2>
-                        <div className="photo-grid">
-                            {mrithunPhotos.map((src, idx) => (
-                                <div className="photo-card" key={idx}>
-                                    <div className="photo-inner">
-                                        <img
-                                            src={src}
-                                            alt={`Moment ${idx + 1}`}
-                                            onError={(e) => {
-                                                console.error("Failed to load image:", src);
-                                                e.target.style.border = "2px solid red";
-                                                e.target.src = "https://via.placeholder.com/300x400?text=Image+Not+Found";
-                                            }}
-                                        />
-                                    </div>
+                    <section className="section roadmap fade-in-section">
+                        <h2 className="section-title">Roadmap to Excellence</h2>
+                        <div className="timeline">
+                            <div className="timeline-row">
+                                <div className="timeline-item">
+                                    <h3>The Starting Line</h3>
+                                    <p>The journey began. A spark of brilliance that would grow into the legend we see today.</p>
                                 </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Messages Section */}
-                    <section className="section messages fade-in-section">
-                        <div className="message-container">
-                            <h2 className="section-title">Words for the Journey</h2>
-                            <div className="message-box">
-                                <p>"This is just the beginning."</p>
-                                <p className="highlight">"The world isn't ready for Mrithun at 18 👑🔥"</p>
-                                <p>"From school days to college ways — shine"</p>
+                                <div className="year-marker">0-5</div>
+                            </div>
+                            <div className="timeline-row">
+                                <div className="year-marker">6-12</div>
+                                <div className="timeline-item right">
+                                    <h3>Building the Engine</h3>
+                                    <p>Gaining speed, making friends, and discovering the passions that define you.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-row">
+                                <div className="timeline-item">
+                                    <h3>Full Throttle</h3>
+                                    <p>Navigating the twists and turns of school and growth with unmatched style.</p>
+                                </div>
+                                <div className="year-marker">13-17</div>
+                            </div>
+                            <div className="timeline-row">
+                                <div className="year-marker">18</div>
+                                <div className="timeline-item right">
+                                    <h3>The Winner's Circle</h3>
+                                    <p>The finish line of childhood and the starting grid of greatness. Level 18 unlocked.</p>
+                                </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Footer */}
+                    <section className="section messages fade-in-section">
+                        <div className="message-container">
+                            <h2 className="section-title">Words for the Journey</h2>
+                            <div className="message-box">
+                                <p>"The rearview mirror is small, the windshield is huge."</p>
+                                <p className="highlight">"Drive your life with purpose, Mrithun 👑🔥"</p>
+                                <p>"18 years of being amazing. 100 years of ahead to conquer."</p>
+                            </div>
+                        </div>
+                    </section>
+
                     <footer className="footer fade-in-section">
                         <div className="footer-content">
-                            <h3>Happy 18th Birthday ❤️</h3>
+                            <h3>Happy 18th Birthday 🐺❤️</h3>
                             <p>Crafted with Love by Jotheswaran & Gowthami ❤️</p>
                             <span className="car-icon-large">🏎️💨</span>
                         </div>
