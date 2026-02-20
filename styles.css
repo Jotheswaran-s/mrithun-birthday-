@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: #050505;
+    background-color: #0a0014;
+    /* Deep Midnight Purple */
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
@@ -101,7 +102,8 @@ h6 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    background: radial-gradient(circle at center, #1b0029 0%, #000 100%);
+    /* Purple radial */
     position: relative;
     overflow: hidden;
 }
@@ -115,13 +117,15 @@ h6 {
     width: 100%;
     height: 100%;
     background:
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        linear-gradient(rgba(30, 0, 50, 0.7), rgba(0, 0, 0, 0.9)),
+        /* Purple tint overlay */
         url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1920');
     /* Car Background */
     background-size: cover;
     background-position: center;
     z-index: -1;
-    filter: grayscale(100%) contrast(120%);
+    filter: grayscale(80%) contrast(120%);
+    /* Reduced grayscale to let some color through */
 }
 
 .subtitle {
